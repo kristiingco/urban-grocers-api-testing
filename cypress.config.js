@@ -7,7 +7,7 @@ module.exports = defineConfig({
             require("cypress-mochawesome-reporter/plugin")(on);
         },
         baseUrl:
-            "https://cnt-17c3f273-16e1-4316-9f40-8c3ff40fecf3.containerhub.tripleten-services.com",
+            "https://cnt-310b9285-a9d2-4db2-9cce-d5456e939cb0.containerhub.tripleten-services.com",
         screenshotOnRunFailure: false,
         video: false,
     },
