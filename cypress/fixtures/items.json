@@ -1,0 +1,12 @@
+{
+    "productsList": [
+        {
+            "id": 1,
+            "quantity": 2
+        },
+        {
+            "id": 6,
+            "quantity": 2
+        }
+    ]
+}
