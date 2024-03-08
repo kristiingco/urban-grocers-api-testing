@@ -3,5 +3,8 @@
     "email": "max@example.com",
     "phone": "+10005553535",
     "comment": "The baby is sleeping",
-    "address": "8042 Lancaster Ave.Hamburg, NY"
+    "address": "8042 Lancaster Ave.Hamburg, NY",
+    "invalidFirstName": "M",
+    "invalidPhone": "hello",
+    "invalidAddress": "8"
 }
