@@ -48,4 +48,15 @@ describe("Get a Kit By Name", () => {
             expect(res.body).to.have.property("productsList");
         });
     });
+
+    //Kit name not found
+    it("should return a status code of 404 when kit is not found", () => {
+        cy.get("@failingSearch").its("status").should("equal", 404);
+    });
+
+    it("should have a 'message' property with the value 'Not Found' when kit is not found", () => {
+        cy.get("@failingSearch").then((res) => {
+            expect(res.body).to.have.property("message", "Not Found");
+        });
+    });
 });
