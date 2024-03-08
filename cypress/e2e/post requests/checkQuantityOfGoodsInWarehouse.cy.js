@@ -59,12 +59,11 @@ describe("Check Quantity of Goods in Warehouse", () => {
 
     // Checking the quantity of goods in warehouse when product id does not exist
 
-    // both tests below are failing, resulting in 500 status code and no message property. below are skipped for other tests to continue
-    it.skip("should return a status code of 404 when item ID does not exist", () => {
+    it("should return a status code of 404 when item ID does not exist", () => {
         cy.get("@nonExistingItemQuantity").its("status").should("equal", 404);
     });
 
-    it.skip("should have message' property when item ID does not exist", () => {
+    it("should have message' property when item ID does not exist", () => {
         cy.get("@nonExistingItemQuantity").then((res) => {
             expect(res.body).to.have.property("message");
         });
