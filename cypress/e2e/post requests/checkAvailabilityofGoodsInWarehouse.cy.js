@@ -25,7 +25,7 @@ describe("Check Availability of Goods in Warehouse", () => {
         cy.get("@productsAvailability").its("status").should("equal", 200);
     });
 
-    it("should have 'Everything You Need'", () => {
+    it("should have 'Everything You Need' property", () => {
         cy.get("@productsAvailability").then((res) => {
             expect(res.body).to.have.property("Everything You Need");
         });
@@ -37,13 +37,13 @@ describe("Check Availability of Goods in Warehouse", () => {
         });
     });
 
-    it("should have 'Big World' property when kit is found", () => {
+    it("should have 'Big World' property", () => {
         cy.get("@productsAvailability").then((res) => {
             expect(res.body).to.have.property("Big World");
         });
     });
 
-    it("should have 'Fresh Food' property when kit is found", () => {
+    it("should have 'Fresh Food' property", () => {
         cy.get("@productsAvailability").then((res) => {
             expect(res.body).to.have.property("Fresh Food");
         });
