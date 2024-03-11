@@ -1,6 +1,6 @@
 /// <reference types="Cypress"/>
 
-describe("Create User Account", () => {
+describe("Create User Account (Success)", () => {
     let data;
 
     before(() => {
@@ -21,7 +21,30 @@ describe("Create User Account", () => {
                 address: data.address,
             },
         }).as("successfulUserCreation");
+    });
 
+    // Successfully creating a user account
+    it("should return a status code of 201 when user is successfully created", () => {
+        cy.get("@successfulUserCreation").its("status").should("equal", 201);
+    });
+
+    it("should have 'authToken' property when user is successfully created", () => {
+        cy.get("@successfulUserCreation").then((res) => {
+            expect(res.body).to.have.property("authToken");
+        });
+    });
+});
+
+describe("Create User Account (Failure)", () => {
+    let data;
+
+    before(() => {
+        cy.fixture("user").then((userData) => {
+            data = userData;
+        });
+    });
+
+    beforeEach(() => {
         cy.request({
             url: "/api/v1/users",
             method: "POST",
@@ -98,18 +121,6 @@ describe("Create User Account", () => {
         }).as("invalidAddress");
     });
 
-    // Successfully creating a user account
-    it("should return a status code of 201 when user is successfully created", () => {
-        cy.get("@successfulUserCreation").its("status").should("equal", 201);
-    });
-
-    it("should have 'authToken' property when user is successfully created", () => {
-        cy.get("@successfulUserCreation").then((res) => {
-            expect(res.body).to.have.property("authToken");
-        });
-    });
-
-    // Creating a user account when firstName is not passed
     it("should return a status code of 400 when first name is not passed", () => {
         cy.get("@noFirstName").its("status").should("equal", 400);
     });
@@ -123,7 +134,6 @@ describe("Create User Account", () => {
         });
     });
 
-    // Creating a user account when phone number is not passed
     it("should return a status code of 400 when phone number is not passed", () => {
         cy.get("@noPhone").its("status").should("equal", 400);
     });
@@ -137,7 +147,6 @@ describe("Create User Account", () => {
         });
     });
 
-    // Creating a user account when address is not passed
     it("should return a status code of 400 when address is not passed", () => {
         cy.get("@noAddress").its("status").should("equal", 400);
     });
@@ -151,7 +160,6 @@ describe("Create User Account", () => {
         });
     });
 
-    // Creating a user account when username is invalid
     it("should return a status code of 400 when username is invalid", () => {
         cy.get("@invalidFirstName").its("status").should("equal", 400);
     });
@@ -165,7 +173,6 @@ describe("Create User Account", () => {
         });
     });
 
-    // Creating a user account when phone number is invalid
     it("should return a status code of 400 when phone number is invalid", () => {
         cy.get("@invalidPhone").its("status").should("equal", 400);
     });
@@ -179,7 +186,6 @@ describe("Create User Account", () => {
         });
     });
 
-    // Creating a user account when address is invalid
     it("should return a status code of 400 when address is invalid", () => {
         cy.get("@invalidAddress").its("status").should("equal", 400);
     });
